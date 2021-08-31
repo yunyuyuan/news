@@ -22,18 +22,6 @@ class Tg(NewsModule):
         self.tg.login()
         self.tg.add_message_handler(self.parse_message)
         self.tg.idle()
-        result = self.tg.call_method("getRemoteFile", {
-            'remote_file_id_': 'AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
-            'file_type_ ': -1718914651,
-        })
-        print('result-', result)
-        # self.tg.call_method("downloadFile", {
-        #     'file_id_': 'AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
-        #     'priority_': 10,
-        #     'offset_': 0,
-        #     'limit_': 83921,
-        #     'synchronous_': True
-        # })
 
     def parse_message(self, update):
         message_content = update
