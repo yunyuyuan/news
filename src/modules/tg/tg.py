@@ -1,7 +1,10 @@
-from telegram.client import Telegram
-from src.modules import NewsModule
-import src.modules.tg as config
 from pprint import pprint
+
+from aiotdlib import Client
+from aiotdlib.api import API, FileTypePhoto
+
+import src.modules.tg as config
+from src.modules import NewsModule
 
 tg_list = {
     "竹新社": -1001353105961,
@@ -12,18 +15,23 @@ tg_list = {
 class Tg(NewsModule):
     def __init__(self):
         super().__init__()
-        self.tg = Telegram(
+        self.client = Client(
             api_id=config.appid,
             api_hash=config.api_hash,
-            phone=config.phone,
+            phone_number=config.phone,
             database_encryption_key=config.database_encryption_key,
         )
-        # you must call login method before others
-        self.tg.login()
-        self.tg.add_message_handler(self.parse_message)
-        self.tg.idle()
+        self.client.add_event_handler(self.parse_message, update_type=API.Types.UPDATE_NEW_MESSAGE)
 
-    def parse_message(self, update):
+        async with self.client:
+            result = self.client.api.get_remote_file(
+                remote_file_id='AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
+                file_type=FileTypePhoto
+            )
+            pprint('result-', result)
+            await self.client.idle()
+
+    async def parse_message(self, update):
         message_content = update
         pprint(message_content)
 
