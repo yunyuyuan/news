@@ -26,7 +26,7 @@ class Tg(NewsModule):
             'remote_file_id_': 'AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
             'file_type_ ': -1718914651,
         })
-        print(result)
+        print('result-', result)
         # self.tg.call_method("downloadFile", {
         #     'file_id_': 'AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
         #     'priority_': 10,
