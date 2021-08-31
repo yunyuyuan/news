@@ -23,13 +23,12 @@ class Tg(NewsModule):
         )
         self.client.add_event_handler(self.parse_message, update_type=API.Types.UPDATE_NEW_MESSAGE)
 
-        async with self.client:
+        with self.client:
             result = self.client.api.get_remote_file(
                 remote_file_id='AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
                 file_type=FileTypePhoto
             )
             pprint('result-', result)
-            await self.client.idle()
 
     async def parse_message(self, update):
         message_content = update
