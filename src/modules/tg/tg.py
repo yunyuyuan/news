@@ -1,4 +1,5 @@
 from pprint import pprint
+import asyncio
 
 from aiotdlib import Client
 from aiotdlib.api import API, FileTypePhoto
@@ -23,13 +24,6 @@ class Tg(NewsModule):
         )
         self.client.add_event_handler(self.parse_message, update_type=API.Types.UPDATE_NEW_MESSAGE)
 
-        with self.client:
-            result = self.client.api.get_remote_file(
-                remote_file_id='AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
-                file_type=FileTypePhoto
-            )
-            pprint('result-', result)
-
     async def parse_message(self, update):
         message_content = update
         pprint(message_content)
@@ -39,3 +33,15 @@ class Tg(NewsModule):
 
     def update(self):
         pass
+
+
+async def create_tg():
+    tg = Tg()
+
+    async with tg.client:
+        result = tg.client.api.get_remote_file(
+            remote_file_id='AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
+            file_type=FileTypePhoto
+        )
+        pprint('result-', result)
+    return tg
