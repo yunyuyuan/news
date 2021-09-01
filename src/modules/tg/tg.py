@@ -39,8 +39,12 @@ async def create_tg():
     tg = Tg()
 
     async with tg.client:
+        result = await tg.client.api.get_remote_file(
+            remote_file_id='AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
+            file_type=FileTypePhoto()
+        )
         result = await tg.client.api.download_file(
-            file_id='AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
+            file_id=result.id,
             offset=0,
             priority=10,
             limit=83921,
