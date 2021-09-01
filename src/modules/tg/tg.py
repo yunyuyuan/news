@@ -31,7 +31,7 @@ class Tg(NewsModule):
     def save_to_db(self):
         pass
 
-    def download_file(self, file_id):
+    async def download_file(self, file_id):
         result = await self.client.api.get_remote_file(
             remote_file_id=file_id,
             file_type=FileTypePhoto()
