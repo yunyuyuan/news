@@ -43,5 +43,9 @@ async def create_tg():
             remote_file_id='AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E',
             file_type=FileTypePhoto()
         )
+        result = await tg.client.api.get_file(
+            request_id=result.EXTRA.get('request_id'),
+            file_id='AgACAgUAAx0CUKbCKQACQLRhLhf6BmUe3TZm3Lj425mLBZGfnwACwrAxG9QlcFWEHPGqe4RYEGyrVXN0AAMBAAMCAAN4AAN7hAQAAR4E'
+        )
         pprint(result)
     return tg
