@@ -53,4 +53,5 @@ async def create_tg():
     tg = Tg()
 
     async with tg.client:
+        await tg.client.idle()
         return tg
